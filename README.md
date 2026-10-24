@@ -1,4 +1,4 @@
-# Bike Sharing Dashboard ✨
+# Bike Sharing Dashboard 
 
 Proyek Analisis Data dan Dashboard Interaktif penyewaan sepeda menggunakan **Bike Sharing Dataset** (Washington D.C., 2011–2012) 
 
