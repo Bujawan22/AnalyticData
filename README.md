@@ -1,69 +1,113 @@
-# Bike Sharing Data Analysis
+# Bike Sharing Dashboard ✨
 
-## Deskripsi
+Proyek Analisis Data dan Dashboard Interaktif penyewaan sepeda menggunakan **Bike Sharing Dataset** (Washington D.C., 2011–2012) 
 
-Proyek ini merupakan bagian dari kelas **Belajar Fundamental Analisis Data Dicoding**. Analisis menggunakan dataset Bike Sharing `day.csv` yang berisi data penyewaan sepeda harian di Washington, D.C., selama tahun 2011–2012.
+---
 
-Tujuan proyek ini adalah melihat pola penyewaan sepeda berdasarkan waktu, jenis pengguna, dan kondisi cuaca. Hasil analisis disajikan melalui notebook Python dan dashboard interaktif menggunakan Streamlit.
+## Profil Pengembang
+- **Nama:** I Made Tara Bujawan
+- **Email:** bujawan.2305551139@student.unud.ac.id
+- **ID Dicoding:** madetara
 
-## Pertanyaan Bisnis
+---
 
-1. Bagaimana perubahan jumlah penyewaan sepeda setiap bulan selama 2011–2012?
-2. Bagaimana perbandingan penyewaan oleh pengguna *casual* dan *registered*?
-3. Bagaimana rata-rata penyewaan sepeda pada setiap kondisi cuaca?
+## Deskripsi Proyek
+Proyek ini bertujuan untuk menganalisis pola penyewaan sepeda berdasarkan faktor waktu (tren bulanan), karakteristik tipe pengguna (*casual* vs *registered*), dan pengaruh kondisi cuaca. Hasil analisis disajikan dalam bentuk eksplorasi mendalam pada Jupyter Notebook (`notebook.ipynb`) dan dashboard interaktif berbasis web menggunakan **Streamlit** (`dashboard/dashboard.py`).
 
-Analisis lanjutan juga menggunakan teknik **binning** dan **manual grouping** untuk mengelompokkan tingkat permintaan berdasarkan jumlah penyewaan, cuaca, dan musim.
+### Pertanyaan Bisnis
+1. Bagaimana tren jumlah penyewaan sepeda setiap bulan selama tahun 2011–2012, dan bagaimana perubahannya dari tahun 2011 ke tahun 2012?
+2. Bagaimana perbandingan jumlah penyewaan sepeda oleh pengguna kasual (*casual*) dan pengguna terdaftar (*registered*) selama tahun 2011–2012, serta kelompok pengguna mana yang memberikan kontribusi terbesar terhadap total penyewaan?
+3. Bagaimana perbedaan rata-rata jumlah penyewaan sepeda berdasarkan kategori kondisi cuaca selama tahun 2011–2012?
 
-## Struktur Proyek
+---
+
+## Struktur Direktori
 
 ```text
 submission/
 ├── dashboard/
-│   └── dashboard.py
+│   └── dashboard.py          # Script aplikasi dashboard Streamlit
 ├── data/
-│   ├── day.csv
-│   └── day_clean.csv
-├── notebook.ipynb
-├── README.md
-├── requirements.txt
-└── url.txt
+│   ├── day.csv               # Dataset mentah Bike Sharing
+│   └── day_clean.csv         # Dataset bersih hasil wrangling & cleaning
+├── notebook.ipynb            # Analisis data lengkap (wrangling, EDA, visualisasi)
+├── README.md                 # Dokumentasi proyek
+├── requirements.txt          # Dependensi library Python yang dibutuhkan
+└── url.txt                   # Tautan URL deployment dashboard online
 ```
 
-## Teknologi
+---
 
-- Python
-- Pandas dan NumPy
-- Matplotlib dan Seaborn
-- Streamlit
-
-## Menjalankan Notebook
-
-1. Instal library yang diperlukan:
-
-   ```bash
-   python -m pip install -r requirements.txt
-   ```
-
-2. Buka `notebook.ipynb` melalui Jupyter Notebook atau editor yang mendukung notebook.
-3. Jalankan seluruh cell secara berurutan.
-
-## Menjalankan Dashboard Lokal
-
-Jalankan perintah berikut dari folder utama proyek:
+## Setup Environment - Anaconda
 
 ```bash
-python -m pip install -r requirements.txt
-python -m streamlit run dashboard/dashboard.py
+conda create --name main-ds python=3.9
+conda activate main-ds
+pip install -r requirements.txt
 ```
 
-Buka alamat lokal yang muncul di terminal, biasanya `http://localhost:8501`.
+## Setup Environment - Shell/Terminal
 
-## Dashboard Online
+```bash
+mkdir proyek_analisis_data
+cd proyek_analisis_data
+pipenv install
+pipenv shell
+pip install -r requirements.txt
+```
 
-Dashboard dapat diakses melalui tautan berikut:
+*Atau menggunakan Python venv bawaan:*
 
-**[Bike Sharing Analysis Dashboard](https://bbikesharinganalysis.streamlit.app/)**
+```bash
+python -m venv venv
+# Windows:
+.\venv\Scripts\activate
+# macOS/Linux:
+source venv/bin/activate
 
-## Referensi
+pip install -r requirements.txt
+```
 
-Fanaee-T, H., & Gama, J. (2013). Event labeling combining ensemble detectors and background knowledge. *Progress in Artificial Intelligence, 2*, 113–127. https://doi.org/10.1007/s13748-013-0040-3
+---
+
+## Run Streamlit App
+
+Dari direktori utama proyek (`submission`), jalankan:
+
+```bash
+streamlit run dashboard/dashboard.py
+```
+
+*Atau jika berada di dalam folder `dashboard`:*
+
+```bash
+cd dashboard
+streamlit run dashboard.py
+```
+
+Akses dashboard melalui browser di: `http://localhost:8501`
+
+---
+
+## Dashboard Online (Deployment)
+
+Dashboard Streamlit telah dideploy dan dapat diakses secara online melalui tautan berikut:
+
+👉 **[Bike Sharing Analysis Dashboard](https://bbikesharinganalysis.streamlit.app/)**
+
+---
+
+## Fitur Utama Dashboard
+- **Filter Rentang Tanggal Interaktif:** Menggunakan form input dua tanggal terpisah (*Tanggal Mulai* dan *Tanggal Akhir*) dengan tombol eksekusi **🔍 Analisis** dan validasi rentang tanggal otomatis.
+- **KPI Metrics Overview:** Ringkasan metrik utama (*Total Penyewaan*, *Pengguna Casual*, *Pengguna Registered*, dan *Jumlah Hari*).
+- **Visualisasi Tren Bulanan (Line Chart):** Perbandingan pola musiman dan peningkatan sewa dari tahun 2011 ke tahun 2012 dengan konsistensi palet biru.
+- **Visualisasi Perbandingan Pengguna (Bar Chart & Tabel):** Menyorot pengguna *registered* sebagai kontributor terbesar dengan warna biru tebal/pekat (`#1565C0`) dan pengguna *casual* dengan warna biru redup (`#90CAF9`).
+- **Visualisasi Pengaruh Cuaca (Bar Chart & Tabel):** Menyorot kondisi cuaca dengan rata-rata penyewaan harian tertinggi (*Cerah / Sedikit Berawan*) dengan warna biru pekat (`#1565C0`) serta kondisi lainnya dengan warna biru redup (`#90CAF9`).
+- **Tabel Ringkasan Data Interaktif:** Tabel rincian angka total dan persentase yang rapi serta otomatis menyesuaikan lebar kontainer (`width="stretch"`).
+
+---
+
+## Ringkasan Insight & Temuan
+1. **Tren Bulanan:** Terjadi peningkatan penyewaan sepeda yang sangat signifikan pada tahun 2012 dibandingkan tahun 2011 di seluruh bulan. Puncak aktivitas sewa terjadi pada musim panas hingga awal musim gugur (Juni–September).
+2. **Karakteristik Pengguna:** Pengguna terdaftar (*registered*) memberikan kontribusi dominan sebesar **81,17%** (2.672.662 penyewaan), sedangkan pengguna kasual (*casual*) menyumbang **18,83%** (620.017 penyewaan).
+3. **Pengaruh Cuaca:** Kondisi cuaca *Cerah / Sedikit Berawan* mencatat rata-rata penyewaan harian tertinggi (**4.876,79** unit/hari), diikuti kondisi *Berkabut / Berawan* (**4.035,86** unit/hari), dan menurun drastis saat *Hujan / Salju Ringan* (**1.803,29** unit/hari).
